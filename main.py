@@ -40,8 +40,9 @@ def get_dis_h(df):
 def get_dis_i(df):
 	return df['Distance from I'].tolist()
 
+
 def select_file():
-	global file, location, notation, dis
+	global file, location, notation, dis, dis_w
 
 	cwd = os.getcwd()
 	file_types = [
@@ -59,8 +60,8 @@ def select_file():
 		location = get_location(df)
 		notation = get_notation(df)
 
-		dis = [get_dis_warehouse(df)]
-		dis.append(get_dis_a(df))
+		dis_w = get_dis_warehouse(df) # w of Warehouse
+		dis = [get_dis_a(df)]
 		dis.append(get_dis_b(df))
 		dis.append(get_dis_c(df))
 		dis.append(get_dis_d(df))
@@ -71,6 +72,7 @@ def select_file():
 		dis.append(get_dis_i(df))
 
 		print_matrix(dis)
+		gen_savings()
 
 
 def print_matrix(mat):
@@ -79,6 +81,25 @@ def print_matrix(mat):
 			print(element, end='\t')
 
 		print()
+
+
+def gen_savings():
+	global dis, dis_w, savings
+
+	savings = []
+
+	for i, rows in enumerate(dis):
+		for j, element in enumerate(rows):
+			if i >= j:
+				continue
+			max = dis_w[i] + dis_w[j]
+			save = max - element
+			savings.append((i, j, save))
+
+	savings = sorted(savings, key=lambda x: x[2], reverse=True)
+
+	for element in savings:
+		print(element)
 
 
 def gui():
