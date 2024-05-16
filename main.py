@@ -4,24 +4,11 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 
-class DistanceData:
-	def __init__(self):
-		self.warehouse = []
-		self.a = []
-		self.b = []
-		self.c = []
-		self.d = []
-		self.e = []
-		self.f = []
-		self.g = []
-		self.h = []
-		self.i = []
-
 def get_location(df):
-	return df['Location']
+	return df['Location'].tolist()
 
 def get_notation(df):
-	return df['Notation']
+	return df['Notation'].tolist()
 
 def get_dis_warehouse(df):
 	return df['Distance from Warehouse (in kms)'].tolist()
@@ -54,8 +41,7 @@ def get_dis_i(df):
 	return df['Distance from I'].tolist()
 
 def select_file():
-	global file
-	global dis
+	global file, location, notation, dis
 
 	cwd = os.getcwd()
 	file_types = [
@@ -73,20 +59,26 @@ def select_file():
 		location = get_location(df)
 		notation = get_notation(df)
 
-		dis = DistanceData()
-		dis.warehouse = get_dis_warehouse(df)
-		dis.a = get_dis_a(df)
-		dis.b = get_dis_b(df)
-		dis.c = get_dis_c(df)
-		dis.d = get_dis_d(df)
-		dis.e = get_dis_e(df)
-		dis.f = get_dis_f(df)
-		dis.g = get_dis_g(df)
-		dis.h = get_dis_h(df)
-		dis.i = get_dis_i(df)
+		dis = [get_dis_warehouse(df)]
+		dis.append(get_dis_a(df))
+		dis.append(get_dis_b(df))
+		dis.append(get_dis_c(df))
+		dis.append(get_dis_d(df))
+		dis.append(get_dis_e(df))
+		dis.append(get_dis_f(df))
+		dis.append(get_dis_g(df))
+		dis.append(get_dis_h(df))
+		dis.append(get_dis_i(df))
 
-		return location, notation, dis
+		print_matrix(dis)
 
+
+def print_matrix(mat):
+	for row in mat:
+		for element in row:
+			print(element, end='\t')
+
+		print()
 
 
 def gui():
@@ -94,7 +86,7 @@ def gui():
 	root.title("Problema del Enrutamiento del Vehículo")
 	frm = ttk.Frame(root, padding=30)
 	frm.grid()
-	ttk.Button(frm, text="Select File ", command=select_file).grid(column=0, row=0)
+	ttk.Button(frm, text="Select File", command=select_file).grid(column=0, row=0)
 	root.mainloop()
 
 gui()
