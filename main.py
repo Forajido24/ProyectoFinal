@@ -3,6 +3,7 @@ import pandas as pd
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import*
 
 def get_location(df):
 	return df['Location'].tolist()
@@ -103,11 +104,22 @@ def gen_savings():
 
 
 def gui():
-	root = tk.Tk()
+	root = Tk()
 	root.title("Problema del Enrutamiento del Vehículo")
-	frm = ttk.Frame(root, padding=30)
+	frm = Frame(root)
+	frm.config(width=450,height=250)
 	frm.grid()
-	ttk.Button(frm, text="Select File", command=select_file).grid(column=0, row=0)
+	titulo=Label(frm,text="Proyecto Final VRP",font=("Helvetica", 20, "bold"),bg="blue",fg="white")
+	titulo.place(x=0,y=0, width=450,height=50)
+	marco=Label(frm,bg="blue")
+	marco.place(x=0,y=0,height=250,width=25)
+	marco=Label(frm,bg="blue")
+	marco.place(x=425,y=0,height=250,width=25)
+	marco=Label(frm,bg="blue")
+	marco.place(x=0,y=225,height=25,width=450)
+
+	boton=Button(frm, text="Select File", command=select_file)
+	boton.place(x=200,y=200)
 	root.mainloop()
 
 gui()
