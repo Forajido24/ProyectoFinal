@@ -54,6 +54,7 @@ def select_file():
 	file = filedialog.askopenfilename(
 		title="Select a file", initialdir=cwd, filetypes=file_types
 	)
+	nombre_data.insert(END,file)
 
 	if file:
 		df = pd.read_csv(file, header=0)
@@ -103,23 +104,28 @@ def gen_savings():
 		print(element)
 
 
-def gui():
-	root = Tk()
-	root.title("Problema del Enrutamiento del Vehículo")
-	frm = Frame(root)
-	frm.config(width=450,height=250)
-	frm.grid()
-	titulo=Label(frm,text="Proyecto Final VRP",font=("Helvetica", 20, "bold"),bg="blue",fg="white")
-	titulo.place(x=0,y=0, width=450,height=50)
-	marco=Label(frm,bg="blue")
-	marco.place(x=0,y=0,height=250,width=25)
-	marco=Label(frm,bg="blue")
-	marco.place(x=425,y=0,height=250,width=25)
-	marco=Label(frm,bg="blue")
-	marco.place(x=0,y=225,height=25,width=450)
 
-	boton=Button(frm, text="Select File", command=select_file)
-	boton.place(x=200,y=200)
-	root.mainloop()
+root = Tk()
+root.title("Problema del Enrutamiento del Vehículo")
+frm = Frame(root)
+frm.config(width=450,height=250)
+frm.grid()
+titulo=Label(frm,text="Proyecto Final VRP",font=("Verdana", 20, "bold"),bg="#031373",fg="white")
+titulo.place(x=0,y=0, width=450,height=50)
+marco=Label(frm,bg="#031373")
+marco.place(x=0,y=0,height=250,width=25)
+marco=Label(frm,bg="#031373")
+marco.place(x=425,y=0,height=250,width=25)
+marco=Label(frm,bg="#031373")
+marco.place(x=0,y=225,height=25,width=450)
 
-gui()
+
+Texto_data=Label(frm,text="Dirección del archivo: ")
+Texto_data.place(x=25,y=165,width=150,height=20)
+nombre_data=Text(frm)
+nombre_data.place(x=160,y=165,width=200,height=20)
+
+boton=Button(frm,text="Select File",command=select_file,font=("Arial", 10, "bold"),fg="white",activeforeground="black",bg="#43444A",activebackground="lightblue",relief="raised")
+boton.place(x=185,y=195)
+root.mainloop()
+
