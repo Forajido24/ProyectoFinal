@@ -1,0 +1,211 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+%% Welcome to Overleaf!
+%% If this is your first time using LaTeX, it might be worth going through this brief presentation:
+%% https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1
+
+%% Researchers have been using LaTeX for decades to typeset their papers, producing beautiful, crisp documents in the process. By learning LaTeX, you are effectively following in their footsteps, and learning a highly valuable skill!
+
+%% The \usepackage commands below can be thought of as analogous to importing libraries into Python, for instance. We've pre-formatted this for you, so you can skip right ahead to the title below.
+
+\usepackage{cite}  % Este paquete es útil para comprimir múltiples citas en una sola entrada
+\usepackage{indentfirst}
+\usepackage[figurename=Fig.]{caption} % Cambiar el nombre del caption de las fotos
+\usepackage{fancyhdr} % Definir el estilo de la página
+
+%% Language and font encodings
+\usepackage[spanish, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times} % Times New Roman
+\usepackage{courier} % Courier
+
+%% Sets page size and margins
+\usepackage[a4paper,top=1.9cm,bottom=2.54cm,left=1.73cm,right=1.73cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx} % Images support
+\usepackage[most]{tcolorbox} % Callouts Support 
+\graphicspath{ {img/} }
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[hidelinks]{hyperref} % Gestión de hipervínculos
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+%% Variables
+
+%% Main Images
+\newcommand{\logoUdg}{logo-udg.jpg}
+\newcommand{\logoCucei}{logo-cucei.jpg}
+
+% Datos de la Escuela
+\newcommand{\universidad}{Universidad de Guadalajara}
+\newcommand{\cede}{Centro Universitario de Ciencias Exactas e Ingenierías}
+
+% Datos de la Materia
+\newcommand{\materia}{Análisis de Algoritmos}
+\newcommand{\carrera}{Ingeniería en Computación}
+\newcommand{\division}{División de Tecnologías para la Integración CiberHumana}
+\newcommand{\theTitle}{Problema del Erutamiento del Vehículo}
+\newcommand{\profesor}{Jorge Ernesto López Arce Delgado}
+\newcommand{\seccion}{D01}
+\newcommand{\startDate}{21 de mayo de 2024}
+
+% Datos de los Autores
+\newcommand{\theAuthor}{Juárez Rubio Alan Yahir}
+\newcommand{\bAuthor}{García González Luis Ángel}
+
+\newcommand{\theAuthorCode}{218517809}
+\newcommand{\bAuthorCode}{218557703}
+
+\newcommand{\theAuthorMail}{alan.juarez5178@alumnos.udg.mx}
+\newcommand{\bAuthorMail}{luis.garcia5577@alumnos.udg.mx}
+
+% Datos del Repositorio
+\newcommand{\repositorio}{\url{https://github.com/Forajido24/ProyectoFinal}}
+\newcommand{\version}{1.0}
+\newcommand{\licencia}{Sin Licencia}
+
+% Espaciado
+\newcommand{\nl}{\par\vspace{0.4cm}}
+
+\title{\fontsize{24}{28.8}\selectfont \theTitle}
+\date{}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+
+% Esilo de enlaces
+\hypersetup{
+	colorlinks=false
+}
+
+\urlstyle{same}
+
+%% Config
+
+%% Sections Formats
+% section
+\titleformat{\section}[block]{\centering\scshape\normalsize}{\Roman{section}.}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% subsection
+\titleformat{\subsection}[block]{\itshape\normalsize}{\Alph{subsection}.}{1em}{}[\hspace{1em}]
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+
+% subsubsection
+\titleformat{\subsubsection}[runin]{\itshape\normalsize}{\arabic{subsubsection})}{1em}{}[\hspace{1em}]
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+
+%% Title
+\usepackage{authblk}
+
+\author{\theAuthor}
+\author{\bAuthor}
+
+\affil{\small{\textit{CENTRO UNIVERSITARIO DE CIENCIAS}\\
+	\textit{EXACTAS E INGENIERÍAS, (CUCEI, UDG)}}}
+
+	\affil{
+		\fontfamily{courier}\selectfont
+		\theAuthorMail\\
+		\fontfamily{courier}\selectfont
+		\bAuthorMail
+	}
+
+	\pagestyle{fancy}
+
+% Encabezado
+
+\renewcommand{\headrulewidth}{0pt} % Elimina la línea del encabezado
+\setlength{\headheight}{15pt} % Ajuste necesario para evitar warnings
+
+\fancyhead{}
+\rhead{
+	\begin{flushright}
+		\theTitle
+	\end{flushright}
+}
+
+\fancyfoot{}
+\lfoot{\materia}
+\cfoot{\thepage} % Paginación
+\rfoot{\small Curso impartido por \profesor}
+
+\begin{document}
+\selectlanguage{spanish}
+
+\begin{titlepage}
+	\centering
+	{\huge\textbf{\universidad}}\par\vspace{0.6cm}
+	{\LARGE{\cede}}\vfill
+	
+	\begin{figure}[h]
+		\begin{minipage}[t]{0.45\textwidth}
+			\centering
+			\includegraphics[width=130px, height=200px, keepaspectratio]{\logoUdg}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\centering
+			\includegraphics[width=130px, height=200px, keepaspectratio]{\logoCucei}
+		\end{minipage}
+	\end{figure}\vfill
+	
+	\Large{
+		\division\nl
+		\carrera\nl
+		\textbf{\materia}\nl
+	}
+	\begin{figure}[h]
+		\centering
+		\begin{minipage}[t]{0.75\textwidth}
+			{\Large
+				\textbf{Integrantes:}
+				\begin{itemize}
+					\item \theAuthor\ - \theAuthorCode
+					\item \bAuthor\ - \bAuthorCode
+				\end{itemize}
+			}
+		\end{minipage}
+	\end{figure}\vfill
+	{\LARGE{\textbf{\theTitle}}}\vfill
+	
+	\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black]
+		\centering
+		Este documento contiene información sensible.\\
+		No debería ser impreso o compartido con terceras entidades.
+	\end{tcolorbox}\vfill
+
+	{\large \startDate}\par
+\end{titlepage}
+
+\maketitle
+
+\noindent\textbf{\textit{Abstract}— \\
+	\\
+	\textit{Palabras claves} - \\
+	\\
+	Repositorio de código: \repositorio\\
+	Versión actual del código: \version\\
+	Licencia legal código: \licencia
+}
+
+\section{Introducción}
+\section{Trabajos Relacionados}
+\section{Descripción del Desarrollo del Proyecto Modular}
+\section*{Módulo I Justificación de Arquitectura y Programación de Sistemas}
+\section*{Módulo II Justificación de Sistemas Inteligentes}
+\section*{Módulo III Justificación de Sistemas Distribuidos}
+\section{Resultados Obtenidos del Proyecto}
+\section{Conclusiones y Trabajo a Futuro}
+
+% Referencias
+
+\nocite{*} % Para incluir todas las referencias sin necesidad de citarlas
+
+\clearpage
+\bibliographystyle{ieeetr}
+\bibliography{ref}
+
+\end{document}
