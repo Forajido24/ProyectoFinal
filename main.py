@@ -1,3 +1,4 @@
+from collections import Counter
 import os
 import pandas as pd
 import tkinter as tk
@@ -107,12 +108,51 @@ def gen_savings():
                 continue
             max = dis_w[i] + dis_w[j]
             save = max - element
-            savings.append((i, j, save))
+            savings.append((i, j, save, max))
 
     savings = sorted(savings, key=lambda x: x[2], reverse=True)
 
     for element in savings:
         print(element)
+
+    solve_vrp()
+
+
+def solve_vrp():
+    global dis_w, savings, location, selected_connections
+
+    selected_connections = []
+    used_nodes = {}
+    total_dis = 0
+    total_save = 0
+
+    for i, j, save, max in savings:
+        # Initialize the used nodes count if not already present
+        if i not in used_nodes:
+            used_nodes[i] = 0
+        if j not in used_nodes:
+            used_nodes[j] = 0
+
+        if used_nodes[i] < 2 and used_nodes[j] < 2:
+            used_nodes[i] += 1
+            used_nodes[j] += 1
+
+            ij_dis = max - save
+            total_dis += ij_dis
+            total_save += save
+
+            # Add the connection to the selected connections
+            selected_connections.append((i, j, ij_dis))
+
+    independ_nodes = [key for key, value in used_nodes.items() if value == 0]
+
+    total_dis += (sum(dis_w[i] for i in independ_nodes)) * 2
+
+    print("Used Nodes:", used_nodes)
+    print("Selected Nodes:", selected_connections)
+    print("Total Distance:", total_dis)
+    print("Total Save:", total_save)
+    print("Independent Nodes:", independ_nodes)
 
 
 root = Tk()
