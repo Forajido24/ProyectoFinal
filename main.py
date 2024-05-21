@@ -131,7 +131,7 @@ def display_graph(used_nodes):
     graph_window.title("VRP Solution Graph")
     canvas_width = 600
     canvas_height = 600
-    canvas = Canvas(graph_window, width=canvas_width, height=canvas_height, bg="white")
+    canvas = Canvas(graph_window, width=canvas_width, height=canvas_height, bg="#58C90E")
     canvas.pack()
 
     n = len(location)
@@ -146,27 +146,38 @@ def display_graph(used_nodes):
         x = center_x + radius * math.cos(angle)
         y = center_y + radius * math.sin(angle)
         node_positions.append((x, y))
-        canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill="blue",width=3)
+        canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill="#071671",width=3)
         canvas.create_text(x, y - 15, text=notation[i], fill="black",width=3)
 
     # Dibujar el nodo central (Warehouse)
-    canvas.create_oval(center_x - 10, center_y - 10, center_x + 10, center_y + 10, fill="green",width=3)
-    canvas.create_text(center_x, center_y - 15, text="Warehouse", fill="black")
+    canvas.create_oval(center_x - 10, center_y - 10, center_x + 10, center_y + 10, fill="#7B1799",width=3)
+    canvas.create_text(center_x, center_y - 15, text="Warehouse", fill="black",font=("Arial",10,"bold"))
 
-    # Conectar Warehouse con todos los nodos y mostrar distancias
+    # Conectar Warehouse con nodos G, A y F y mostrar distancias
+    connections = [(center_x, center_y, node_positions[6][0], node_positions[6][1], dis_w[6], "G"),
+                   (center_x, center_y, node_positions[0][0], node_positions[0][1], dis_w[0], "A"),
+                   (center_x, center_y, node_positions[5][0], node_positions[5][1], dis_w[5], "F")]
+
+    for (x1, y1, x2, y2, distance, label) in connections:
+        canvas.create_line(x1, y1, x2, y2, fill="#3B3B2F",width=6)
+        canvas.create_line(x1, y1, x2, y2, fill="#E7DD0A",width=1, dash=(4, 4))
+        mid_x = (x1 + x2) // 2
+        mid_y = (y1 + y2) // 2
+        canvas.create_text(mid_x, mid_y, text=f"{distance} km", fill="black",font=("Arial",14,"bold"))
 
     for i, j, distance in selected_connections:
         x1, y1 = node_positions[i]
         x2, y2 = node_positions[j]
-        canvas.create_line(x1, y1, x2, y2, fill="red",width=3)
+        canvas.create_line(x1, y1, x2, y2, fill="#3B3B2F",width=6)
+        canvas.create_line(x1, y1, x2, y2, fill="#E7DD0A",width=1, dash=(4, 4))
         mid_x = (x1 + x2) // 2
         mid_y = (y1 + y2) // 2
-        canvas.create_text(mid_x, mid_y, text=f"{distance} km", fill="black")
+        canvas.create_text(mid_x, mid_y, text=f"{distance} km", fill="black",font=("Arial",10,"bold"))
 
     for i in range(len(location)):
         if used_nodes[i] == 0:
             x, y = node_positions[i]
-            canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill="blue",width=2)
+            canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill="#071671")
             canvas.create_text(x, y - 15, text=notation[i], fill="black",width=2)
 
 root = Tk()
@@ -191,6 +202,6 @@ Texto_data.place(x=25, y=165, width=150, height=20)
 nombre_data = Text(frm)
 nombre_data.place(x=160, y=165, width=200, height=20)
 
-boton = Button(frm, text="Selccionar archivo", command=select_file, font=("Arial", 10, "bold"), fg="white", activeforeground="black", bg="#43444A", activebackground="lightblue", relief="raised")
-boton.place(x=185, y=195)
+boton = Button(frm, text="Seleccionar archivo", command=select_file, font=("Arial", 10, "bold"), fg="white", activeforeground="black", bg="#43444A", activebackground="lightblue", relief="raised")
+boton.place(x=180, y=195)
 root.mainloop()
