@@ -156,7 +156,7 @@ def display_graph(used_nodes):
     # Conectar Warehouse con nodos G, A y F y mostrar distancias
     connections = [(center_x, center_y, node_positions[6][0], node_positions[6][1], dis_w[6], "G"),
                    (center_x, center_y, node_positions[0][0], node_positions[0][1], dis_w[0], "A"),
-                   (center_x, center_y, node_positions[5][0], node_positions[5][1], dis_w[5], "F")]
+                   (center_x, center_y, node_positions[5][0], node_positions[4][1], dis_w[5], "E")]
 
     for (x1, y1, x2, y2, distance, label) in connections:
         canvas.create_line(x1, y1, x2, y2, fill="#3B3B2F",width=6)
