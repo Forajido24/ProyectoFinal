@@ -205,6 +205,7 @@ image = PhotoImage(file="Carro2.png")
 FotoCar = Label(image=image)
 FotoCar.place(x=185, y=60)
 
+
 Texto_data = Label(frm, text="Dirección del archivo: ")
 Texto_data.place(x=25, y=165, width=150, height=20)
 nombre_data = Text(frm)
