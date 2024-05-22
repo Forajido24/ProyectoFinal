@@ -207,9 +207,14 @@ Su capacidad para escapar de mínimos locales lo hace efectivo para problemas co
 	\item \texttt{display\_graph}: toma la colección de los nodos usados  y crea una ventana nueva para dar la vista a la conexión de los nodos hecha, en este caso, se da una fondo verde para poder dar la simulación del pasto alrededor de una mini ciudad, después se marcará la circunferencia del círculo donde se colocarán los nodos de recorrido y después entrará un un ciclo dónde se cerrarán los puntos, otros apartados donde se coloca el nodo central, el cuadro de información y los caminos con las distancias recorridas con un pequeño diseño por parte de sus servidores.
 \end{itemize}
 
-\subsection{Paradigmas Implementados}
+\subsection{Metodologías Implementados}
 
-El paradigma implementado en la implementación de este algoritmo fue \texttt{algorimo voraces}. A grandes rasgos, una vez calculado el ahorro de cada conexión, escoge primeramente las conexiones con mayor ahorro mientras no haya alguna conexión eligida previamente que genere conflicto. Este algoritmo es voraz porque, una vez seleccionado una conexión, no vuelve hacia atrás, impidiendo ver otras posibilidades.
+Las metodologías implementadas en este algoritmos fueron las siguientes:
+\begin{itemize}
+	\item \textbf{Algoritmos Voraces}: Una vez calculado el ahorro de cada conexión, escoge primeramente las conexiones con mayor ahorro mientras no haya alguna conexión eligida previamente que genere conflicto. Este algoritmo es voraz porque, una vez seleccionado una conexión, no vuelve hacia atrás, impidiendo ver otras posibilidades.
+	\item \textbf{Fuerza Bruta}: Se calculó cada uno de los ahorros que existen por cada una de las posibles combinaciones que existen al combinar los nodos.
+	\item \textbf{Programación Dinámica}: Al calcular cada uno de los ahorros, se almacenaba dicho valor en conjunto con un valor máximo. Estos fueron utilizados para generar el recorrido total y la selección de nodos para el grafo final. Esto evito recalcular dichos valores.
+\end{itemize}
 
 \subsection{Ejecución del Programa}
 
