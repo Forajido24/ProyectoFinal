@@ -184,7 +184,7 @@ Como objetivos especificos tenemos:\\
 \subsection{Clavke Wright}
 El algoritmo de Clarke-Wright, también conocido como el algoritmo de ahorro de Clarke-Wright, es un método heurístico utilizado para resolver el Problema del Enrutamiento de Vehículos (VRP, por sus siglas en inglés).\\
 \\
-El algoritmo de Clarke-Wright se basa en la idea de "ahorro" para combinar rutas y reducir costos. Los pasos básicos del algoritmo son los siguientes:
+El algoritmo de Clarke-Wright se basa en la idea de ahorro para combinar rutas y reducir costos. Los pasos básicos del algoritmo son los siguientes:
 
 \subsection{Algoritmo de Barrido (\textit{Sweep Algorithm})}
 El algoritmo de barrido es una técnica heurística para resolver el Problema del Enrutamiento de Vehículos (VRP) mediante la división de clientes en sectores y la resolución de rutas para cada sector individualmente. Su simplicidad radica en convertir las coordenadas cartesianas de los clientes en coordenadas polares respecto al depósito central, ordenándolos por ángulo para facilitar el barrido.\\
@@ -207,11 +207,29 @@ Su capacidad para escapar de mínimos locales lo hace efectivo para problemas co
 	\item \texttt{display\_graph}: toma la colección de los nodos usados  y crea una ventana nueva para dar la vista a la conexión de los nodos hecha, en este caso, se da una fondo verde para poder dar la simulación del pasto alrededor de una mini ciudad, después se marcará la circunferencia del círculo donde se colocarán los nodos de recorrido y después entrará un un ciclo dónde se cerrarán los puntos, otros apartados donde se coloca el nodo central, el cuadro de información y los caminos con las distancias recorridas con un pequeño diseño por parte de sus servidores.
 \end{itemize}
 
-Por otro lado tenemos la interfaz principal, dónde quisimos darle un diseño sencillo pero atractivo, donde colocamos un marco azul, y una imagen de un carro dando referencia al problema que estamos solucionando, y en la parte central hay un botón que nos ayudará a encontrar el archivo csv para poder tomar los datos y hacer funcionar el algoritmo, dónde en la parte posterior nos mostrará la ruta del archivo que seleccionamos.
-
 \subsection{Paradigmas Implementados}
 
 El paradigma implementado en la implementación de este algoritmo fue \texttt{algorimo voraces}. A grandes rasgos, una vez calculado el ahorro de cada conexión, escoge primeramente las conexiones con mayor ahorro mientras no haya alguna conexión eligida previamente que genere conflicto. Este algoritmo es voraz porque, una vez seleccionado una conexión, no vuelve hacia atrás, impidiendo ver otras posibilidades.
+
+\subsection{Ejecución del Programa}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{1-menu.jpg}
+  \caption{Despliegue del menú principal}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{2-gestor.jpg}
+  \caption{Selección del dataset, el arhivo CSV}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{3-grafo.jpg}
+  \caption{Muestreo de la solución a través del grafo}
+\end{figure}
 
 \section*{Módulo I Justificación de Arquitectura y Programación de Sistemas}
 Para el desarrollo del proyecto implementó con Python. Se eligió Python debido a su robustez en análisis de datos vasta biblioteca de herramientas y su simplicidad de uso permiten un desarrollo ágil y eficiente en la creación de modelos.\\
