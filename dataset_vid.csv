@@ -1,8 +1,0 @@
-﻿Location,Notation,Distance from Warehouse (in kms),Distance from A,Distance from B,Distance from C,Distance from D,Distance from E,Distance from F
-Dupont St,A,20,0,22,18,30,26,28
-Front St,B,18,22,0,32,20,22,21
-College St,C,14,18,32,0,20,22,21
-Yonge St 1,D,16,30,20,20,0,30,32
-Yonge St 2,E,12,26,22,22,30,0,26
-Danforth Ave,F,19,28,21,21,22,26,0
-
