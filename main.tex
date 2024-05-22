@@ -97,36 +97,6 @@
 \titleformat{\subsubsection}[runin]{\itshape\normalsize}{\arabic{subsubsection})}{1em}{}[\hspace{1em}]
 \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
 
-%% Title
-\usepackage{authblk}
-
-\author{\theAuthor}
-\author{\bAuthor}
-
-\affil{\small{\textit{CENTRO UNIVERSITARIO DE CIENCIAS}\\
-	\textit{EXACTAS E INGENIERÍAS, (CUCEI, UDG)}}}
-
-	\affil{
-		\fontfamily{courier}\selectfont
-		\theAuthorMail\\
-		\fontfamily{courier}\selectfont
-		\bAuthorMail
-	}
-
-	\pagestyle{fancy}
-
-% Encabezado
-
-\renewcommand{\headrulewidth}{0pt} % Elimina la línea del encabezado
-\setlength{\headheight}{15pt} % Ajuste necesario para evitar warnings
-
-\fancyhead{}
-\rhead{
-	\begin{flushright}
-		\theTitle
-	\end{flushright}
-}
-
 \fancyfoot{}
 \lfoot{\materia}
 \cfoot{\thepage} % Paginación
@@ -182,9 +152,11 @@
 
 \maketitle
 
-\noindent\textbf{\textit{Abstract}— \\
+\noindent\textbf{\textit{Abstract}—En este documento se presentan los resultados obtenidos mediante la investigación sobre el desarrollo del algoritmo para la solución del \textit{problema del enrutamiento del vehículo} desde la implementación de la metaheristica.
 	\\
-	\textit{Palabras claves} - \\
+	El objetivo principal de este problema es desarrollar un algoritmo que, dado un \textit{dataset}, pueda encontrar un conjunto de rutas muy óptima  (no necesariamente la mejor) para recorrer todos los lugares iniciando cada  ruta siempre desde el mismo punto de partida.\\
+	\\
+	\textit{Palabras claves} - metaheristica, problema del enrutamiento del  vehículo, vrp, algoritmo, óptimo\\
 	\\
 	Repositorio de código: \repositorio\\
 	Versión actual del código: \version\\
@@ -192,13 +164,67 @@
 }
 
 \section{Introducción}
+En la actualidad, múltiples empresas y negocios enfrentan el desafío de transportar una variedad de productos a diversos destinos de manera eficiente Ejemplos notables incluyen empresas de paquetería, servicios de comida a domicilio y compañías de logística. Una de las preguntas cruciales que se plantean estos negocios es: ¿Cuál es la ruta más óptima y corta para cubrir todos los destinos necesarios?\\
+
+Aunque este problema puede ser abordado manualmente mediante diversas estrategias o algoritmos, la complejidad y el tiempo requerido aumentan exponencialmente con el número de destinos. En muchos casos, la cantidad de ubicaciones es tan grande que resolverlo manualmente se convierte en una tare extremadamente lenta y ardua.\\
+
+La solución radica en el uso de computadoras equipadas con algoritmos eficientes. Con el algoritmo adecuado, estos problemas complejos pueden ser resueltos en cuestión de segundos, optimizando las rutas y reduciendo significativamente los costos operativos y el tiempo de entrega. Aquí es donde los algoritmos metahurísticos juegan un papel crucial. Estos algoritmos, inspirados en procesos naturales y técnicas de búsqueda heurística, son capaces de encontrar soluciones cercanas a la óptima en tiempos razonables, incluso para problemas de gran escala.\\
+
+Nuestro objetivo general es diseñar y aplicar un enfoque innovador que no sol reduzca el tiempo de cómputo, sino que también mejore la precisión de las soluciones obtenidas. A través de esta investigación y desarrollo, se espera proporcionar una herramienta valiosa para empresas y negocios que dependen de la optimización de rutas para su operación diaria.\\
+
+Como objetivos especificos tenemos:\\
+
+	Desarrollar un algoritmo metaheristico que resuelva el problema del enrutamiento del vehículo.\\
+
+	Diseñar una interfaz gráfica intuitiva y sencilla para que el usuario pueda interactuar fácilmente con el programa.\\
+
+	Generar visualmente un grafo para que el usuario pueda analizar el grafo graficamente.
+
 \section{Trabajos Relacionados}
+\subsection{Clavke Wright}
+El algoritmo de Clarke-Wright, también conocido como el algoritmo de ahorro de Clarke-Wright, es un método heurístico utilizado para resolver el Problema del Enrutamiento de Vehículos (VRP, por sus siglas en inglés).\\
+\\
+El algoritmo de Clarke-Wright se basa en la idea de "ahorro" para combinar rutas y reducir costos. Los pasos básicos del algoritmo son los siguientes:
+
+\subsection{Algoritmo de Barrido (\textit{Sweep Algorithm})}
+El algoritmo de barrido es una técnica heurística para resolver el Problema del Enrutamiento de Vehículos (VRP) mediante la división de clientes en sectores y la resolución de rutas para cada sector individualmente. Su simplicidad radica en convertir las coordenadas cartesianas de los clientes en coordenadas polares respecto al depósito central, ordenándolos por ángulo para facilitar el barrido.\\
+
+Este método divide la complejidad del problema al resolver el Viajante de Comercio (TSP) dentro de sectores más pequeños, optimizando rutas locales. Aunque es rápido y fácil de implementar, puede no alcanzar soluciones óptimas debido a la dependencia del criterio de partición en sectores, lo que puede generar variaciones en la calidad de la solución.
+
+\subsection{Algoritmo de Búsqueda Tabú (Tabu Search)}
+La Búsqueda Tabú es una técnica avanzada de optimización combinatoria que utiliza una memoria a corto plazo para evitar soluciones repetidas y explorar vecindarios diversos. Este algoritmo parte de una solución inicial y genera vecinos mediante movimientos permitidos, evitando movimientos prohibidos según una lista tabú.\\
+
+Su capacidad para escapar de mínimos locales lo hace efectivo para problemas complejos como el VRP, aunque su implementación es más compleja y requiere ajuste de parámetros. La Búsqueda Tabú es flexible y adaptable, proporcionando soluciones de alta calidad al equilibrar la exploración y explotación de soluciones en el espacio de búsqueda.
+
 \section{Descripción del Desarrollo del Proyecto Modular}
+
+\subsection{Funciones}
+
+\begin{itemize}
+	\item \texttt{select\_file()}: Despliega un gestor de archivos para que el usuario seleccione un archivo y lo guarda en la variable global \textit{file}. Adicionalmente, guarda las distancias de cada uno de los puntos de entrega respecto a los demás puntos den entregra en la \texttt{dis}. Tambien guarda la distancia de cada destino respecto al \textit{warehouse} en la lista \texttt{dis\_w}
+	\item \texttt{gen\_savings}: Accede a cada una de las distancias de la matriz \texttt{dis}, y calcula la distancia ahorrada respecto a ir por separado a cada uno de esos nodos. Descarta las posiciones $n, n$ y las posiciones que ya han sido calculadas. Guarda todos estos cálculos en la lista de tuplas \texttt{savings}, en la que cada tupla guarda primeramente los dos nodos conectados, en la tercera posición la distancia guardada y por último la distancia máxima de cada conexión.
+	\item \texttt{solve\_vrp()}: Itera la lista de tuplas \texttt{savings} y utiliza auxiliarmente el diccionario de \texttt{used\_nodes}. Evalúa en orden descendente cada una de las conexiones y mientras alguno de los nodos de la conexión no haya sido seleccionado más de dos veces, agrega la conexión y su respectivo valor en lista de \texttt{selected\_nodes}. Con esta lista se arma e \texttt{independ\_nodes} se construye el grafo.
+	\item \texttt{display\_graph}: toma la colección de los nodos usados  y crea una ventana nueva para dar la vista a la conexión de los nodos hecha, en este caso, se da una fondo verde para poder dar la simulación del pasto alrededor de una mini ciudad, después se marcará la circunferencia del círculo donde se colocarán los nodos de recorrido y después entrará un un ciclo dónde se cerrarán los puntos, otros apartados donde se coloca el nodo central, el cuadro de información y los caminos con las distancias recorridas con un pequeño diseño por parte de sus servidores.
+\end{itemize}
+
+Por otro lado tenemos la interfaz principal, dónde quisimos darle un diseño sencillo pero atractivo, donde colocamos un marco azul, y una imagen de un carro dando referencia al problema que estamos solucionando, y en la parte central hay un botón que nos ayudará a encontrar el archivo csv para poder tomar los datos y hacer funcionar el algoritmo, dónde en la parte posterior nos mostrará la ruta del archivo que seleccionamos.
+
+\subsection{Paradigmas Implementados}
+
+El paradigma implementado en la implementación de este algoritmo fue \texttt{algorimo voraces}. A grandes rasgos, una vez calculado el ahorro de cada conexión, escoge primeramente las conexiones con mayor ahorro mientras no haya alguna conexión eligida previamente que genere conflicto. Este algoritmo es voraz porque, una vez seleccionado una conexión, no vuelve hacia atrás, impidiendo ver otras posibilidades.
+
 \section*{Módulo I Justificación de Arquitectura y Programación de Sistemas}
-\section*{Módulo II Justificación de Sistemas Inteligentes}
-\section*{Módulo III Justificación de Sistemas Distribuidos}
+Para el desarrollo del proyecto implementó con Python. Se eligió Python debido a su robustez en análisis de datos vasta biblioteca de herramientas y su simplicidad de uso permiten un desarrollo ágil y eficiente en la creación de modelos.\\
+
+En cuanto a la manipulación de datos, se implementaron estructuras de datos como listas, diccionarios y matrices. Estas estructuras facilitan la organización y acceso eficiente a los datos, soportando el desarrollo de algoritmos complejos y personalizados según las necesidades del algoritmo.
+
+%\section*{Módulo II Justificación de Sistemas Inteligentes}
+%\section*{Módulo III Justificación de Sistemas Distribuidos}
 \section{Resultados Obtenidos del Proyecto}
-\section{Conclusiones y Trabajo a Futuro}
+Con la implementación de nuestro algoritmo logramos resolver el problema del enrutamiento del vehículo. Logramos que a través de la interfaz gráfica muestre cada una de los caminos que se tomarán desde el punto de partida (el \textit{warehouse}). Adicionalmente, mostramos en una ventana cuál es la distancia total que se recorrera en esta solución y el ahorro que se tiene respecto a ir individualmente a cada nodo.
+
+\section{Conclusiones}
+Este proyecto nos llevó a aprender diferentes cosas que no sabíamos ni dominábamos, tal el uso del módulo de tkinter canvas, como lo puede ser el uso de matrices, el trabajar con grafos y la implementación de las diferentes estructuras en conjunto. Trabajo y apoyándonos mutuamente pudimos hacer una resolución al VRP, y pudimos tener un algoritmo que nos entregó rutas de transporte, y cómo se conectan entre sí para tener un menor recorrido. Cabe mencionar que nuestro lado del programa, no entrega la solución más óptima, por ser el lado de la metaheurística, pero sí asegura una ruta muy óptima para recorrer los distintos puntos.
 
 % Referencias
 
