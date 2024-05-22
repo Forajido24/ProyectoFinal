@@ -92,7 +92,7 @@ def gen_savings():
     solve_vrp()
 
 def solve_vrp():
-    global dis_w, savings, location, selected_connections, notation, used_nodes
+    global dis_w, savings, location, selected_connections, notation, used_nodes,total_save,total_dis
 
     selected_connections = []
     used_nodes = {}
@@ -125,7 +125,7 @@ def solve_vrp():
     display_graph(used_nodes)
 
 def display_graph(used_nodes):
-    global location, notation, selected_connections, dis_w, dis
+    global location, notation, selected_connections, dis_w, dis,total_dis,total_save
 
     graph_window = Toplevel(root)
     graph_window.title("VRP Solution Graph")
@@ -148,8 +148,16 @@ def display_graph(used_nodes):
         node_positions.append((x, y))
         canvas.create_oval(x - 10, y - 10, x + 10, y + 10, fill="#071671",width=3)
         canvas.create_text(x, y - 15, text=notation[i], fill="black",width=3)
-
+	
     # Dibujar el nodo central (Warehouse)
+    print("Total Distance:", total_dis)
+    print("Total Save:", total_save)
+    
+    canvas.create_rectangle(450, 450, 650, 650, fill="white")
+    canvas.create_text(492, 465, text="Ahorro total:", fill="black",font=("Arial",10,"bold"))
+    canvas.create_text(500, 480, text=total_save, fill="black",font=("Arial",10,"bold"))
+    canvas.create_text(500, 495, text="Distancia total:", fill="black",font=("Arial",10,"bold"))
+    canvas.create_text(500, 510, text=total_dis, fill="black",font=("Arial",10,"bold"))
     canvas.create_oval(center_x - 10, center_y - 10, center_x + 10, center_y + 10, fill="#7B1799",width=3)
     canvas.create_text(center_x, center_y - 15, text="Warehouse", fill="black",font=("Arial",10,"bold"))
 
