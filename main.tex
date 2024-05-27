@@ -7,31 +7,40 @@
 
 %% The \usepackage commands below can be thought of as analogous to importing libraries into Python, for instance. We've pre-formatted this for you, so you can skip right ahead to the title below.
 
-\usepackage{cite}  % Este paquete es útil para comprimir múltiples citas en una sola entrada
-\usepackage{indentfirst}
-\usepackage[figurename=Fig.]{caption} % Cambiar el nombre del caption de las fotos
-\usepackage{fancyhdr} % Definir el estilo de la página
-
 %% Language and font encodings
-\usepackage[spanish, english]{babel}
+\usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{times} % Times New Roman
-\usepackage{courier} % Courier
+\usepackage{courier}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=1.9cm,bottom=2.54cm,left=1.73cm,right=1.73cm,marginparwidth=1.75cm]{geometry}
-
+\usepackage[top=0.75in,bottom=1in,left=0.68in,right=0.68in]{geometry}
+%\setlength{\columnsep}{0.17in} page columns separation
 %% Useful packages
 \usepackage{amsmath}
-\usepackage{graphicx} % Images support
-\usepackage[most]{tcolorbox} % Callouts Support 
-\graphicspath{ {img/} }
-\usepackage[colorinlistoftodos]{todonotes}
-\usepackage[hidelinks]{hyperref} % Gestión de hipervínculos
+\usepackage{array} % <-- add this line for m{} column type
+\usepackage[hidelinks]{hyperref} % hyperlinks support
+\usepackage{graphicx} % images support
+%\usepackage{listings} % codeblock support
+%\usepackage{smartdiagram} % diagrams support
+\usepackage[most]{tcolorbox} % callouts support%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[dvipsnames, table, xcdraw]{xcolor} % Tables support
+%\usepackage{zed-csp} % cchemas support
 
-\usepackage{titlesec}
+%% Formating
+\usepackage{authblk} % to add authors in maketitle
+%\usepackage{blindtext} % to gen filler text
+\usepackage[figurename=Fig.]{caption} % to change prefix of the image caption
+\usepackage{cite} % useful to compress multiple quotations into a single entry
 \usepackage{enumitem}
+\usepackage{fancyhdr} % to set page style
+\usepackage{indentfirst}
+%\usepackage{natbib}
+%\usepackage{parskip} % remove first line tabulation
+\usepackage{setspace}
+\usepackage{titlesec}
+%\usepackage{titling} % to config maketitle
 
 %% Variables
 
@@ -50,6 +59,8 @@
 \newcommand{\theTitle}{Problema del Enrutamiento del Vehículo}
 \newcommand{\profesor}{Jorge Ernesto López Arce Delgado}
 \newcommand{\seccion}{D01}
+\newcommand{\nrc}{204835}
+\newcommand{\clave}{IL355}
 \newcommand{\startDate}{21 de mayo de 2024}
 
 % Datos de los Autores
@@ -67,40 +78,85 @@
 \newcommand{\version}{1.0}
 \newcommand{\licencia}{Sin Licencia}
 
-% Espaciado
-\newcommand{\nl}{\par\vspace{0.4cm}}
-
-\title{\fontsize{24}{28.8}\selectfont \theTitle}
+%% Declaration
 \date{}
-
+\graphicspath{ {img/} }
 \addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+\renewcommand{\lstlistingname}{Código} % Para cambiar el caption de los código
 
-% Esilo de enlaces
-\hypersetup{
-	colorlinks=false
-}
+%% Spacing
+\newcommand{\nl}{\par\vspace{0.4cm}}
+\setlength{\parskip}{11pt} % Espaciado de línea anterior
+\setstretch{1} % Interlineado
+%\setlength{\parindent}{4pt} % Sangría
 
+% Itemize and enumerate
+\setlist[itemize]{itemsep=3pt, topsep=3pt, parsep=1pt, partopsep=1pt}
+\setlist[enumerate]{itemsep=3pt, topsep=3pt, parsep=1pt, partopsep=1pt}
+
+% Captions
+\setlength{\floatsep}{12pt}
+\setlength{\intextsep}{12pt}
+
+% Tables
+\let\oldtabular\tabular
+\renewcommand{\tabular}{\small\oldtabular}
+\renewcommand{\arraystretch}{1.2} % <-- Adjust vertical spacing
+\addto\captionsspanish{\renewcommand{\tablename}{\scshape Tabla}}
+
+%% Styles
+\hypersetup{colorlinks=false} % Esilo de enlaces
 \urlstyle{same}
 
-%% Config
-
-%% Sections Formats
-% section
+% Section
 \titleformat{\section}[block]{\centering\scshape\normalsize}{\Roman{section}.}{1em}{}
-\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\section}{0pt}{3pt}{3pt}
 
-% subsection
-\titleformat{\subsection}[block]{\itshape\normalsize}{\Alph{subsection}.}{1em}{}[\hspace{1em}]
-\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+% Subsection
+\titleformat{\subsection}[block]{\itshape\normalsize}{\Alph{subsection}.}{1em}{}
+\titlespacing*{\subsection}{0pt}{3pt}{3pt}
 
-% subsubsection
-\titleformat{\subsubsection}[runin]{\itshape\normalsize}{\arabic{subsubsection})}{1em}{}[\hspace{1em}]
-\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+% Subsubsection
+\titleformat{\subsubsection}[runin]{\itshape\normalsize}{\arabic{subsubsection}.}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0pt} % Elimina la línea del encabezado
+\setlength{\headheight}{15pt} % Ajuste necesario para evitar warnings
+
+\fancyhead{}
+\rhead{
+	\begin{flushright}
+		\theTitle
+	\end{flushright}
+}
+
+% Footer
 \fancyfoot{}
-\lfoot{\materia}
+\lfoot{\small\materia}
 \cfoot{\thepage} % Paginación
 \rfoot{\small Curso impartido por \profesor}
+
+%% Title
+\title{
+	\vspace*{-1cm}	\fontsize{24}{28.8}\selectfont \theTitle
+}
+\author{\theAuthor}
+\author{\bAuthor}
+
+\affil{\small
+	\textit{CENTRO UNIVERSITARIO DE CIENCIAS}\\
+	\textit{EXACTAS E INGENIERÍAS, (CUCEI, UDG)}
+}
+
+\affil{
+	\fontfamily{pcr}\selectfont
+	\theAuthorMail\\
+	\fontfamily{pcr}\selectfont
+	\bAuthorMail\\
+	\vspace*{-18pt}
+}
 
 \begin{document}
 \selectlanguage{spanish}
@@ -124,14 +180,16 @@
 	
 	\Large{
 		\division\nl
-		\carrera\nl
-		\textbf{\materia}\nl
+		\textbf{\carrera}\nl
+		\textbf{\materia}\par\vspace{1pt}
+		\seccion\ - \clave\ - \nrc\vfill
 	}
+
 	\begin{figure}[h]
 		\centering
 		\begin{minipage}[t]{0.75\textwidth}
 			{\Large
-				\textbf{Integrantes:}
+				\textbf{Integrantes:}\par\vspace{8pt}
 				\begin{itemize}
 					\item \theAuthor\ - \theAuthorCode
 					\item \bAuthor\ - \bAuthorCode
@@ -139,6 +197,7 @@
 			}
 		\end{minipage}
 	\end{figure}\vfill
+
 	{\LARGE{\textbf{\theTitle}}}\vfill
 	
 	\begin{tcolorbox}[colback=red!5!white, colframe=red!75!black]
@@ -172,13 +231,15 @@ La solución radica en el uso de computadoras equipadas con algoritmos eficiente
 
 Nuestro objetivo general es diseñar y aplicar un enfoque innovador que no sol reduzca el tiempo de cómputo, sino que también mejore la precisión de las soluciones obtenidas. A través de esta investigación y desarrollo, se espera proporcionar una herramienta valiosa para empresas y negocios que dependen de la optimización de rutas para su operación diaria.\\
 
-Como objetivos especificos tenemos:\\
+Como objetivos especificos tenemos:
 
-	Desarrollar un algoritmo metaheristico que resuelva el problema del enrutamiento del vehículo.\\
+\begin{itemize}
+	\item Desarrollar un algoritmo metaheristico que resuelva el problema del enrutamiento del vehículo.
 
-	Diseñar una interfaz gráfica intuitiva y sencilla para que el usuario pueda interactuar fácilmente con el programa.\\
+	\item Diseñar una interfaz gráfica intuitiva y sencilla para que el usuario pueda interactuar fácilmente con el programa.
 
-	Generar visualmente un grafo para que el usuario pueda analizar el grafo graficamente.
+	\item Generar visualmente un grafo para que el usuario pueda analizar el grafo graficamente.
+\end{itemize}
 
 \section{Trabajos Relacionados}
 \subsection{Clavke Wright}
